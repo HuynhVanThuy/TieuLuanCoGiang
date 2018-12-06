@@ -1,14 +1,14 @@
 package Object;
 
 public class Authors {
-	String au_id,au_lname,au_fname,phone,address,city,state,zip;
-	boolean contract;
+	String au_id,au_lname,au_fname,phone,address,city,state,zip,img;
+
 
 	public Authors() { 
 
 	}
 	public Authors(String au_id, String au_lname, String au_fname, String phone, String address, String city,
-			String state, String zip, boolean contract) {
+			String state, String zip, String img, boolean contract) {
 		super();
 		this.au_id = au_id;
 		this.au_lname = au_lname;
@@ -18,6 +18,7 @@ public class Authors {
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
+		this.img = img;
 		this.contract = contract;
 	}
 	public String getAu_id() {
@@ -74,4 +75,11 @@ public class Authors {
 	public void setContract(boolean contract) {
 		this.contract = contract;
 	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	boolean contract;
 }

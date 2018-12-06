@@ -3,6 +3,12 @@
 <%@ page import="Object.Publishers"%>
 <%@ page import="Model.ModelPublishers"%>
 <%@ page import="Controller.ControlPublishers"%>
+<%@ page import="Object.Tatles"%>
+<%@ page import="Model.ModelBooks"%>
+<%@ page import="Controller.ControlBooks"%>
+<%@ page import="Object.Authors"%>
+<%@ page import="Model.ModelAuthors"%>
+<%@ page import="Controller.ControlAuthors"%>
 
 <!DOCTYPE html>
 <html>
@@ -172,62 +178,45 @@
 			</div>
 			<div class="cake_feature_inner">
 				<div class="main_title">
-					<h2>Sản phẩm nổi bật</h2>
+					<h2>Sách nổi bật</h2>
 					<h5>Những cuốn sách làm nên thương hiệu của chúng tôi</h5>
 				</div>
 				<div class="cake_feature_slider owl-carousel">
+					<%
+						ControlBooks controlbooks = new ControlBooks();
+						for (int i = 0; i < controlbooks.GetBooks().size(); i++) {
+					%>
 					<div class="item">
 						<div class="cake_feature_item">
 							<div class="cake_img">
-								<img src="img/cake-feature/c-feature-1.jpg" alt="">
+								<img
+									src="img/cake-feature/<%=controlbooks.GetBooks().get(i).getImg()%>"
+									alt="">
 							</div>
 							<div class="cake_text">
-								<h4>$29</h4>
-								<h3>10.000 đ</h3>
-								<h5>Strawberry Cupcakes</h5>
+								<h4>
+									-<%=controlbooks.GetBooks().get(i).getRoyalty()%>%
+								</h4>
+								<h3><%=controlbooks.GetBooks().get(i).getPrice()%>
+									$
+								</h3>
+								<%
+									//xử lý độ dài tiêu đề
+										String tieude;
+										if (controlbooks.GetBooks().get(i).getTitle().length() > 30) {
+											tieude = controlbooks.GetBooks().get(i).getTitle().substring(0, 30) + "...";
+										} else {
+											tieude = controlbooks.GetBooks().get(i).getTitle();
+										}
+								%>
+								<h5><%=tieude%></h5>
 								<a class="pest_btn" href="#">Add to cart</a>
 							</div>
 						</div>
 					</div>
-					<div class="item">
-						<div class="cake_feature_item">
-							<div class="cake_img">
-								<img src="img/cake-feature/c-feature-2.jpg" alt="">
-							</div>
-							<div class="cake_text">
-								<h4>$29</h4>
-								<h3>10.000 đ</h3>
-								<h5>Strawberry Cupcakes</h5>
-								<a class="pest_btn" href="#">Add to cart</a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="cake_feature_item">
-							<div class="cake_img">
-								<img src="img/cake-feature/c-feature-3.jpg" alt="">
-							</div>
-							<div class="cake_text">
-								<h4>$29</h4>
-								<h3>10.000 đ</h3>
-								<h5>Strawberry Cupcakes</h5>
-								<a class="pest_btn" href="#">Add to cart</a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="cake_feature_item">
-							<div class="cake_img">
-								<img src="img/cake-feature/c-feature-4.jpg" alt="">
-							</div>
-							<div class="cake_text">
-								<h4>$29</h4>
-								<h3>10.000 đ</h3>
-								<h5>Strawberry Cupcakes</h5>
-								<a class="pest_btn" href="#">Add to cart</a>
-							</div>
-						</div>
-					</div>
+					<%
+						}
+					%>
 				</div>
 			</div>
 		</div>
@@ -243,12 +232,7 @@
 						<div class="d-flex">
 							<img src="img/recipe/recipe-1.png" alt="">
 						</div>
-						<div class="media-body">
-							<h4>Special Recipe</h4>
-							<p>Ut enim ad minima veniam, quis nostrum exercitationem
-								ullam corporis suscipit laboriosam, nisi ut aliquid ex ea
-								commodi equatur uis autem vel eum.</p>
-							<a class="w_view_btn" href="#">View Details</a>
+						<div class="media-body"> 
 						</div>
 					</div>
 				</div>
@@ -257,12 +241,7 @@
 						<div class="d-flex">
 							<img src="img/recipe/recipe-1.png" alt="">
 						</div>
-						<div class="media-body">
-							<h4>Special Recipe</h4>
-							<p>Ut enim ad minima veniam, quis nostrum exercitationem
-								ullam corporis suscipit laboriosam, nisi ut aliquid ex ea
-								commodi equatur uis autem vel eum.</p>
-							<a class="w_view_btn" href="#">View Details</a>
+						<div class="media-body"> 
 						</div>
 					</div>
 				</div>
@@ -271,12 +250,7 @@
 						<div class="d-flex">
 							<img src="img/recipe/recipe-1.png" alt="">
 						</div>
-						<div class="media-body">
-							<h4>Special Recipe</h4>
-							<p>Ut enim ad minima veniam, quis nostrum exercitationem
-								ullam corporis suscipit laboriosam, nisi ut aliquid ex ea
-								commodi equatur uis autem vel eum.</p>
-							<a class="w_view_btn" href="#">View Details</a>
+						<div class="media-body"> 
 						</div>
 					</div>
 				</div>
@@ -285,12 +259,7 @@
 						<div class="d-flex">
 							<img src="img/recipe/recipe-1.png" alt="">
 						</div>
-						<div class="media-body">
-							<h4>Special Recipe</h4>
-							<p>Ut enim ad minima veniam, quis nostrum exercitationem
-								ullam corporis suscipit laboriosam, nisi ut aliquid ex ea
-								commodi equatur uis autem vel eum.</p>
-							<a class="w_view_btn" href="#">View Details</a>
+						<div class="media-body"> 
 						</div>
 					</div>
 				</div>
@@ -342,125 +311,38 @@
 				<h5>Top những cuốn sách bạn không nên bỏ lỡ tại Book stores</h5>
 			</div>
 			<div class="row latest_news_inner">
-
+				<%
+					for (Tatles list : controlbooks.GetBooks()) {
+				%>
 				<div class="col-lg-4 col-md-4 col-6">
 					<div class="cake_feature_item">
 						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-3.jpg" alt="">
+							<img src="img/cake-feature/<%=list.getImg()%>" alt="">
 						</div>
 						<div class="cake_text">
-							<h4>$29</h4>
-							<h3>10.000 đ</h3>
-							<h5>Strawberry Cupcakes</h5>
+							<h4>
+								-<%=list.getRoyalty()%>%
+							</h4>
+							<h3><%=list.getPrice()%>
+								$
+							</h3>
+							<%
+								//xử lý độ dài tiêu đề
+									String tieude;
+									if (list.getTitle().length() > 30) {
+										tieude = list.getTitle().substring(0, 30) + "...";
+									} else {
+										tieude = list.getTitle();
+									}
+							%>
+							<h5><%=tieude%></h5>
 							<a class="pest_btn" href="#">Add to cart</a>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-4 col-6">
-					<div class="cake_feature_item">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-3.jpg" alt="">
-						</div>
-						<div class="cake_text">
-							<h4>$29</h4>
-							<h3>10.000 đ</h3>
-							<h5>Strawberry Cupcakes</h5>
-							<a class="pest_btn" href="#">Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-6">
-					<div class="cake_feature_item">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-3.jpg" alt="">
-						</div>
-						<div class="cake_text">
-							<h4>$29</h4>
-							<h3>10.000 đ</h3>
-							<h5>Strawberry Cupcakes</h5>
-							<a class="pest_btn" href="#">Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-6">
-					<div class="cake_feature_item">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-3.jpg" alt="">
-						</div>
-						<div class="cake_text">
-							<h4>$29</h4>
-							<h3>10.000 đ</h3>
-							<h5>Strawberry Cupcakes</h5>
-							<a class="pest_btn" href="#">Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-6">
-					<div class="cake_feature_item">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-3.jpg" alt="">
-						</div>
-						<div class="cake_text">
-							<h4>$29</h4>
-							<h3>10.000 đ</h3>
-							<h5>Strawberry Cupcakes</h5>
-							<a class="pest_btn" href="#">Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-6">
-					<div class="cake_feature_item">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-3.jpg" alt="">
-						</div>
-						<div class="cake_text">
-							<h4>$29</h4>
-							<h3>10.000 đ</h3>
-							<h5>Strawberry Cupcakes</h5>
-							<a class="pest_btn" href="#">Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-6">
-					<div class="cake_feature_item">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-3.jpg" alt="">
-						</div>
-						<div class="cake_text">
-							<h4>$29</h4>
-							<h3>10.000 đ</h3>
-							<h5>Strawberry Cupcakes</h5>
-							<a class="pest_btn" href="#">Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-6">
-					<div class="cake_feature_item">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-3.jpg" alt="">
-						</div>
-						<div class="cake_text">
-							<h4>$29</h4>
-							<h3>10.000 đ</h3>
-							<h5>Strawberry Cupcakes</h5>
-							<a class="pest_btn" href="#">Add to cart</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-6">
-					<div class="cake_feature_item">
-						<div class="cake_img">
-							<img src="img/cake-feature/c-feature-3.jpg" alt="">
-						</div>
-						<div class="cake_text">
-							<h4>$29</h4>
-							<h3>10.000 đ</h3>
-							<h5>Strawberry Cupcakes</h5>
-							<a class="pest_btn" href="#">Add to cart</a>
-						</div>
-					</div>
-				</div>
-
+				<%
+					}
+				%>
 			</div>
 		</div>
 	</section>
@@ -572,48 +454,27 @@
 						</div>
 					</div>
 				</div>
+				<%
+					ControlAuthors controlAuthors = new ControlAuthors();
+					for (Authors ls : controlAuthors.SelectRandAuthors()) {
+				%>
 				<div class="col-lg-3 col-6">
 					<div class="chef_item">
 						<div class="chef_img">
-							<img class="img-fluid" src="img/chef/chef-1.jpg" alt="">
+							<img class="img-fluid" src="img/chef/<%=ls.getImg() %>" alt="">
 							<ul class="list_style">
 								<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
 							</ul>
 						</div>
 						<a href="#">
-							<h4>Michale Joe</h4>
+							<h4><%=ls.getAu_fname()+" "+ls.getAu_lname() %></h4>
 						</a>
-						<h5>Expert in Cake Making</h5>
+						<h5><%=ls.getCity()+" "+ls.getState()+", "+ls.getAddress() %></h5>
 					</div>
 				</div>
-				<div class="col-lg-3 col-6">
-					<div class="chef_item">
-						<div class="chef_img">
-							<img class="img-fluid" src="img/chef/chef-2.jpg" alt="">
-							<ul class="list_style">
-								<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-							</ul>
-						</div>
-						<a href="#">
-							<h4>Michale Joe</h4>
-						</a>
-						<h5>Expert in Cake Making</h5>
-					</div>
-				</div>
-				<div class="col-lg-3 col-6">
-					<div class="chef_item">
-						<div class="chef_img">
-							<img class="img-fluid" src="img/chef/chef-3.jpg" alt="">
-							<ul class="list_style">
-								<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-							</ul>
-						</div>
-						<a href="#">
-							<h4>Michale Joe</h4>
-						</a>
-						<h5>Expert in Cake Making</h5>
-					</div>
-				</div>
+				<%
+					}
+				%>
 			</div>
 		</div>
 	</section>

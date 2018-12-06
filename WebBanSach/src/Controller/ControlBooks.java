@@ -17,8 +17,5 @@ public class ControlBooks {
 	public ArrayList<Tatles> GetTypeBooks(){
 		String sql = "SELECT DISTINCT dbo.titles.type FROM dbo.titles";
 		return modelbooks.SelectTypeBooks(sql);
-	}
-	public static void main(String[] args) {
-		 
-	}
+	} 
 }

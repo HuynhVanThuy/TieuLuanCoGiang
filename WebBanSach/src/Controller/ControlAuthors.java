@@ -3,7 +3,8 @@ package Controller;
 import java.util.ArrayList;
 
 import Model.ModelAuthors;
-import Object.Authors; 
+import Object.Authors;
+import Object.Publishers; 
 
 public class ControlAuthors {
 
@@ -13,12 +14,9 @@ public class ControlAuthors {
 		String sql = "SELECT dbo.authors.au_fname, dbo.authors.au_lname FROM dbo.authors";
 		return modelAuthors.SelectAuthur(sql);
 	}
-
-	public static void main(String[] args) { 
-		ControlAuthors c = new ControlAuthors();
-		for (Authors ls: c.GetNameAuthor()) {
-			System.out.println(ls.getAu_fname());
-		}
-	}
-
+	//	Lấy ngẫu nhiên 3 tác giả
+	public ArrayList<Authors> SelectRandAuthors(){
+		String sql = "SELECT TOP 3 * FROM dbo.authors ORDER BY NEWID()";
+		return modelAuthors.RandAuthors(sql);
+	}  
 }
